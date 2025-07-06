@@ -164,19 +164,19 @@ TypeScript applications at scale (and for the cloud), *from my experience*.
 For me, some of its main advantages are:
 
 - It brings errors as values to TypeScript in a fully type-safe, fully inferred
-  way—offering a significant step up in error handling compared to throwing
+  way&mdash;offering a significant step up in error handling compared to throwing
   exceptions.
 - It’s the easiest way to create extensible, composable, reusable, and testable
   code in TypeScript. For example, adding telemetry and logging is a breeze,
   and observability is unmatched.
 - Composable by design: adding retries, granular error handling, interruptions,
-  and side effects (taps) is easier than anywhere else—except perhaps in other
-  functional-first programming languages.
+  and side effects (taps) is easier than anywhere else&mdash;except perhaps in
+  other functional-first programming languages.
 - It blurs the distinction between synchronous and asynchronous functions
   (function coloring).
-- The number of building blocks it provides is staggering—data structures, async
-  queues, pub/sub, streams, mutexes (semaphores), configuration and dependency
-  management, and more.
+- The number of building blocks it provides is staggering&mdash;data
+  structures, async queues, pub/sub, streams, mutexes (semaphores),
+  configuration and dependency management, and more.
 
 There’s too much value to describe in words. Programmers value code, so I plan
 to show plenty of examples in the following articles.
