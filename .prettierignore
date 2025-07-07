@@ -1,0 +1,8 @@
+# Ignore artifacts:
+*.js
+archive
+build
+coverage
+public
+sass
+themes

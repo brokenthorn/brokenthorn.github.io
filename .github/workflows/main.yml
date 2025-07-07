@@ -10,12 +10,11 @@ jobs:
     name: Publish site
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout main
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive # for themes
-    - name: Build and deploy
-      uses: shalzz/zola-deploy-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive # for themes
+      - name: Build and deploy
+        uses: shalzz/zola-deploy-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

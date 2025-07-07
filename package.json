@@ -19,5 +19,8 @@
     "pagefind": "^1.1.0",
     "replace-in-file": "^8.1.0",
     "uglify-js": "^3.17.4"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
   }
 }
