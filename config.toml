@@ -98,9 +98,9 @@ smart_punctuation = false          # `...` to `…`, `"quote"` to `“curly”` 
 menu = [
     #    {url = "blog", name = "Blog", slash = true, blank = false, size="s110"},
     #    {url = "about", name = "About", slash = true, blank = false, size="s110"},
-    { url = "archive", name = "Posts", slash = true, blank = false, size = "s110" },
+    { url = "archive", name = "Posts", slash = true, blank = false, size = "s95" },
     #    {url = "categories", name = "Categories", slash = true, blank = false, size="s110"},
-    { url = "tags", name = "Tags", slash = true, blank = false, size = "s110" },
+    { url = "tags", name = "Tags", slash = true, blank = false, size = "s95" },
 ]
 menu_footer = [
     { url = "about", name = "About", slash = true, blank = false, size = "s90" },
@@ -159,14 +159,13 @@ keywords = "Abridge, Abridge.css, Zola, Theme, Zola Theme, getzola, Semantic Htm
 banner = "banner.png"        # Used as default image for OpenGraph/Twitter if page specific image is undefined.
 twitter_meta = "brokenthorn" # for SEO: twitter:site and twitter:creator
 
-google = "Your Google Site verification code."
-bing = "Your Bing Site verification code."
+google = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script><script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>'
+# bing = "Your Bing Site verification code."
 
 seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twitter
 dev = false # development mode, if true then robots.txt should prevent search indexing.
 
-#head_extra = '<meta name="analytics" content="my-analytics-id" /><meta name="advertising" content="my-advertising-id" />'
-
+# head_extra = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script> <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>'
 
 ###############################################################################
 ### Footer social links; these are used in macros/social.html
