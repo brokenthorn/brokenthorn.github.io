@@ -26,7 +26,7 @@ scalable TypeScript applications.
 The series is succinct and to the point, designed to spark your interest in
 coding with Effect while leaving room for your own exploration.
 
-# What Effect Is and What It Provides
+# What is Effect
 
 Effect helps you build _composable_ and _reasonable_ software that’s easy to
 write, test, and evolve as your team and requirements grow.
@@ -72,7 +72,7 @@ packages, including:
 | [vitest](https://github.com/Effect-TS/effect/tree/main/packages/vitest)                                   | Simplifies running tests for Effect-based code with Vitest                              |
 | [workflow](https://github.com/Effect-TS/effect/tree/main/packages/workflow)                               | Durable workflows                                                                       |
 
-# Prerequisites for Learning Effect
+# Prerequisites for Learning
 
 Effect assumes basic TypeScript knowledge: generics, generators, function
 overloads, and ES modules.
@@ -114,7 +114,7 @@ link (use the share button).
 
 # Adoption Strategy
 
-No. Effect is incrementally adoptable, letting you start small.
+Effect is incrementally adoptable, letting you start small.
 
 However, partial adoption at scale can add complexity and lead to blaming Effect
 unfairly.
@@ -122,10 +122,10 @@ unfairly.
 Idiomatic Effect code is succinct and expressive, best experienced by embracing
 its principles or exploring well-written codebases first.
 
-# Realistic Benefits of Effect
+# Benefits
 
-In short, Effect offers _probably the best way_ to write robust TypeScript
-applications at scale (and for the cloud), _from my experience_.
+Effect offers _probably the best way_ to write robust TypeScript applications
+at scale (and for the cloud), _from my experience_.
 
 Key advantages:
 
@@ -144,7 +144,7 @@ Key advantages:
 There’s too much value to capture in words&mdash;examples will follow in upcoming
 articles.
 
-# When Effect May Not Be Suitable
+# When it may not be suitable
 
 Effect is powerful but not always the right fit. Consider avoiding it if:
 
@@ -172,11 +172,14 @@ your project’s needs and philosophy.
 
 # Production Usage
 
-Yes. Companies like Vercel and Zendesk use Effect in production. It has over
-10k stars on GitHub.
+Companies like Vercel and Zendesk use Effect in production.
 
-Check the Discord and the [Effect Podcast](https://effect.website/podcast/)
-for testimonials and stories.
+It also has over 10k stars on GitHub.
+
+Check the Discord server linked above, the [Effect
+Podcast](https://effect.website/podcast/) and [Effect YouTube
+channel](https://www.youtube.com/@effect-ts) for testimonials and adoption
+stories.
 
 # Next Steps
 
