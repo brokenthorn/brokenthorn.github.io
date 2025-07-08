@@ -159,7 +159,7 @@ keywords = "Abridge, Abridge.css, Zola, Theme, Zola Theme, getzola, Semantic Htm
 banner = "banner.png"        # Used as default image for OpenGraph/Twitter if page specific image is undefined.
 twitter_meta = "brokenthorn" # for SEO: twitter:site and twitter:creator
 
-google = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script><script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>'
+# google = ''
 # bing = "Your Bing Site verification code."
 
 seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twitter
