@@ -41,7 +41,7 @@ asynchronous operations.
 
 Effects can be composed using functional combinators like `flatMap`, `zip`, or
 `gen`. This composability allows you to build complex workflows from smaller,
-reusable pieces.
+reusable pieces. Hint: it's like applying the strategy pattern
 
 ## Effects and side-effects
 
@@ -159,7 +159,11 @@ const greetUser = (
 
 // Run the Effect:
 Effect.runPromise(
-  greetUser("42").pipe(Effect.provide(UserRepositoryLive)),
+  greetUser("42").pipe(
+    // Note: you could even dynamically decide
+    // on which implementation to provide here:
+    Effect.provide(UserRepositoryLive)
+  ),
 ).then(console.log); // Hello, User_42!
 ```
 
