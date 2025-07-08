@@ -165,7 +165,7 @@ twitter_meta = "brokenthorn" # for SEO: twitter:site and twitter:creator
 seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twitter
 dev = false # development mode, if true then robots.txt should prevent search indexing.
 
-# head_extra = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script> <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>'
+head_extra = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>'
 
 ###############################################################################
 ### Footer social links; these are used in macros/social.html
