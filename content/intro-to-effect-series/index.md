@@ -26,7 +26,7 @@ scalable TypeScript applications.
 The series is succinct and to the point, designed to spark your interest in
 coding with Effect while leaving room for your own exploration.
 
-## What Effect Is and What It Provides
+# What Effect Is and What It Provides
 
 Effect helps you build _composable_ and _reasonable_ software that’s easy to
 write, test, and evolve as your team and requirements grow.
@@ -72,7 +72,7 @@ packages, including:
 | [vitest](https://github.com/Effect-TS/effect/tree/main/packages/vitest)                                   | Simplifies running tests for Effect-based code with Vitest                              |
 | [workflow](https://github.com/Effect-TS/effect/tree/main/packages/workflow)                               | Durable workflows                                                                       |
 
-## Prerequisites for Learning Effect
+# Prerequisites for Learning Effect
 
 Effect assumes basic TypeScript knowledge: generics, generators, function
 overloads, and ES modules.
@@ -84,9 +84,9 @@ APIs helps but isn’t mandatory.
 Effect distills FP concepts to make them approachable without forcing obscure
 idioms, but some FP background does make some patterns more intuitive.
 
-## Help and Documentation
+# Help and Documentation
 
-### Official Documentation
+## Official Documentation
 
 My personal experience with Effect’s documentation is that it's easy to follow
 and they are continuously improving it.
@@ -98,21 +98,21 @@ Find the docs at
 [https://effect.website/docs/](https://effect.website/docs/) or via the Docs
 link on [https://effect.website/](https://effect.website/).
 
-### Playground
+## Playground
 
 Try Effect live at
 [https://effect.website/play/](https://effect.website/play/), with hot-reload,
 terminal output, and trace viewer. Great for experimenting and creating minimal
 reproducible examples (MREs) before seeking help.
 
-### Discord Community
+## Discord Community
 
 Join the welcoming community at [https://discord.gg/effect-ts](https://discord.gg/effect-ts).
 
 Before asking complex questions, create an MRE on the playground and share the
 link (use the share button).
 
-## Adoption Strategy
+# Adoption Strategy
 
 No. Effect is incrementally adoptable, letting you start small.
 
@@ -122,7 +122,7 @@ unfairly.
 Idiomatic Effect code is succinct and expressive, best experienced by embracing
 its principles or exploring well-written codebases first.
 
-## Realistic Benefits of Effect
+# Realistic Benefits of Effect
 
 In short, Effect offers _probably the best way_ to write robust TypeScript
 applications at scale (and for the cloud), _from my experience_.
@@ -144,7 +144,7 @@ Key advantages:
 There’s too much value to capture in words&mdash;examples will follow in upcoming
 articles.
 
-## When Effect May Not Be Suitable
+# When Effect May Not Be Suitable
 
 Effect is powerful but not always the right fit. Consider avoiding it if:
 
@@ -170,7 +170,7 @@ Effect is powerful but not always the right fit. Consider avoiding it if:
 Effect is powerful but not one-size-fits-all. Choose it when it aligns with
 your project’s needs and philosophy.
 
-## Production Usage
+# Production Usage
 
 Yes. Companies like Vercel and Zendesk use Effect in production. It has over
 10k stars on GitHub.
@@ -178,7 +178,7 @@ Yes. Companies like Vercel and Zendesk use Effect in production. It has over
 Check the Discord and the [Effect Podcast](https://effect.website/podcast/)
 for testimonials and stories.
 
-## Next Steps
+# Next Steps
 
 That wraps up the introduction.
 
