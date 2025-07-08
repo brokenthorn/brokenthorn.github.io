@@ -5,7 +5,7 @@ base_url = "https://brokenthorn.github.io"
 # If you use the npm/node script then all you have to do is set search_library = "offline", and everything else is automatic.
 
 title = "Paul-Sebastian Manole"
-description = "Paul's blog shares pragmatic software engineering insights: cloud-native systems, modern development practices, clean code, and functional programming (TypeScript, Rust, F#)." #for SEO aim for 140-180 Characters
+description = "Functional Programming | Full-Stack Development | TypeScript | Rust | OCaml | Gleam | Effect-TS" #for SEO aim for 140-180 Characters
 theme = "abridge"
 
 default_language = "en"
@@ -98,9 +98,9 @@ smart_punctuation = false          # `...` to `…`, `"quote"` to `“curly”` 
 menu = [
     #    {url = "blog", name = "Blog", slash = true, blank = false, size="s110"},
     #    {url = "about", name = "About", slash = true, blank = false, size="s110"},
-    { url = "archive", name = "Posts", slash = true, blank = false, size = "s95" },
+    { url = "archive", name = "Posts", slash = true, blank = false, size = "s90" },
     #    {url = "categories", name = "Categories", slash = true, blank = false, size="s110"},
-    { url = "tags", name = "Tags", slash = true, blank = false, size = "s95" },
+    { url = "tags", name = "Tags", slash = true, blank = false, size = "s90" },
 ]
 menu_footer = [
     { url = "about", name = "About", slash = true, blank = false, size = "s90" },
@@ -113,20 +113,20 @@ toc = true
 recent = true     # TOC / index
 recent_items = 15
 series = true
-series_items = 9  # Max number of items to display in series list, use 0 to disable
-#Series_parts = "$NUMBER_OF_PARTS part Series"
+series_items = 10 # Max number of items to display in series list, use 0 to disable
+# series_parts = "$NUMBER_OF_PARTS part Series"
 
 #arrow_pagination = true # If set to true then the pagination will use the old arrows mode, be sure to also enable the icons.
 
+meta_post = { position = "top", size = "s85", author = true, readtime = true, readstring = "min read", date = true, updated = true, categories_tags = true, divider = "" }
 meta_index = { position = "bottom", size = "s90", author = false, readtime = false, readstring = "min", date = true, updated = false, categories_tags = true, divider = "" }
-meta_post = { position = "top", size = "s95", author = true, readtime = false, readstring = "min read", date = true, updated = true, categories_tags = true, divider = "" }
 
 hide_section_dates = false                                                                                                                                                                          # hides the date for sections that use posts.html as their template.
 hide_page_nextprev_titles = false                                                                                                                                                                   # hides the next/previous titles for pages that use page.html as their template.
-title_size_index = "s85"
-footer_size = "s80"                                                                                                                                                                                 # the size of the copyright and powered by text
+title_size_index = "s70"
+footer_size = "s95"                                                                                                                                                                                 # the size of the copyright and powered by text
 footer_credit = true
-footer_credit_override = '<p class="s80">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> &#38; <a href="https://github.com/Jieiku/abridge/" target="_blank">Abridge</a></p>'
+footer_credit_override = '<p class="s70">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> &#38; <a href="https://github.com/Jieiku/abridge/" target="_blank">Abridge</a></p>'
 #archive_reverse = true # Set to True to sort posts chronologically per year instead of newest first on the archive page: example.com/archive/
 
 ### Uncomment one of the below lines, or neither, depending on which type of logo you want to use:
@@ -134,9 +134,9 @@ footer_credit_override = '<p class="s80">Powered by <a href="https://www.getzola
 textlogo = '<font color="#f90">P</font>aul-Sebastian Manole'
 # textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="28" height="28"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
 
-sitedesc = false # enables or disables the display of the site description below the logo.
-headhr = false   # show or hide horizontal rule below header
-foothr = false   # show or hide horizontal rule above footer
+sitedesc = true # enables or disables the display of the site description below the logo.
+headhr = false  # show or hide horizontal rule below header
+foothr = false  # show or hide horizontal rule above footer
 
 ### $CURRENT_YEAR and $SITE_TITLE can be used anywhere within the copyright, you can change their position or you can also delete them and type whatever you want instead.
 #copyright = false # set to false to disable the copyright.
@@ -154,12 +154,12 @@ title_separator = "|"                                      # Separator between t
 title_addition = "Pragmatic software engineering insights" # a default value for title addition (for SEO aim for 50-70 characters including the title and separator 'Abridge | title_addition')
 author = "Paul-Sebastian Manole"                           # Put Your Name here
 
-keywords = "Abridge, Abridge.css, Zola, Theme, Zola Theme, getzola, Semantic Html, Fast, lightweight" # used for the primary site index
+keywords = "functional programming, full-stack, software development, TypeScript, Rust, Rustlang, OCaml, Gleam, Effect-TS" # used for the primary site index
 
 banner = "banner.png"        # Used as default image for OpenGraph/Twitter if page specific image is undefined.
 twitter_meta = "brokenthorn" # for SEO: twitter:site and twitter:creator
 
-# google = ''
+# google = "Your Google Site verification code."
 # bing = "Your Bing Site verification code."
 
 seo = true  # enable or disable seo-related meta tags: opengraph, facebook, twitter
@@ -172,8 +172,8 @@ head_extra = '<script async src="https://www.googletagmanager.com/gtag/js?id=G-0
 ###   https://github.com/Jieiku/abridge/blob/master/templates/macros/social.html
 ###############################################################################
 
-feed = true                    # this adds the RSS feed icon in the footer.
-mail = "brokenthorn@gmail.com"
+feed = true # this adds the RSS feed icon in the footer.
+# mail = "brokenthorn@gmail.com"
 # mastodon = "https://mastodon.example.com/@username"
 # element = "matrix.example.com"
 #buymeacoffee = "your-user-name"
@@ -244,7 +244,7 @@ webmanifest = "manifest.min.json" # Required for PWAs
 ###############################################################################
 
 pwa = true         # true to load the service worker
-pwa_VER = '3.12.2' # Service Worker cache version. (increment if you need to force a new cache)
+pwa_VER = '3.12.3' # Service Worker cache version. (increment if you need to force a new cache)
 
 ### 3600=1hour, 28800=8hours, 86400=1day, 604800=1week, 1209600=2weeks
 pwa_NORM_TTL = 0 #  86400 is reasonable. html, json, xml, anything else undefined
