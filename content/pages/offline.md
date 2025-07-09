@@ -7,4 +7,4 @@ title = "Offline Mode"
 
 ## Offline Mode
 
-Sorry, no cache found and it looks like you’re offline, a connection is required.
+Sorry, no cache found and it looks like you're offline, a connection is required.
