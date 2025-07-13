@@ -1,17 +1,17 @@
 +++
-title = "Effect for TypeScript: The effect library"
+title = "Effect-TS 2: The Effect"
 date = 2025-07-08T02:00:00Z
-description = "The 2nd chapter in a series on Effect, a library for writing production-grade TypeScript at scale."
+description = "Introduction to the Effect abstraction and data type from the Effect library for TypeScript."
 draft = false
 
 [extra]
 keywords = "Effect, TypeScript"
-series = "Effect for TypeScript"
+series = "The Effect library for TypeScript"
 toc = true
 
 [taxonomies]
 tags = [
-    "Effect for TypeScript",
+    "The Effect library for TypeScript",
     "Effect",
     "TypeScript",
 ]
