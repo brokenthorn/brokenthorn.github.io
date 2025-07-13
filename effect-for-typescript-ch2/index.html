@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://brokenthorn.github.io/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://brokenthorn.github.io/abridge.css?h=3d2e9c5683be721390df" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://brokenthorn.github.io" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://brokenthorn.github.io/manifest.min.json" />
+  <link rel="mask-icon" href="https://brokenthorn.github.io/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://brokenthorn.github.io/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://brokenthorn.github.io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://brokenthorn.github.io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://brokenthorn.github.io/favicon-16x16.png" />
+  <link rel="alternate" type="application/atom+xml" title="Paul-Sebastian Manole Atom Feed" href="https://brokenthorn.github.io/atom.xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Effect-TS 2: The Effect | Paul-Sebastian Manole</title>
+  <meta name="author" content="Paul-Sebastian Manole" />
+  <meta name="copyright" content="Paul-Sebastian Manole" />
+  <meta name="description" content="Introduction to the Effect abstraction and data type from the Effect library for TypeScript." />
+  <link rel="canonical" href="https://brokenthorn.github.io/effect-for-typescript-ch2/" />
+  <meta name="keywords" content="Effect, TypeScript, functional programming, full-stack, software development, TypeScript, Rust, Rustlang, OCaml, Gleam, Effect-TS" />
+  <meta property="og:url" content="https://brokenthorn.github.io/effect-for-typescript-ch2/" />
+  <meta name="twitter:url" content="https://brokenthorn.github.io/effect-for-typescript-ch2/" />
+  <meta property="og:description" content="Introduction to the Effect abstraction and data type from the Effect library for TypeScript." />
+  <meta name="twitter:description" content="Introduction to the Effect abstraction and data type from the Effect library for TypeScript." />
+  <meta property="og:title" content="Effect-TS 2: The Effect | Paul-Sebastian Manole" />
+  <meta name="twitter:title" content="Effect-TS 2: The Effect | Paul-Sebastian Manole" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://brokenthorn.github.io/banner.png" />
+  <meta property="og:image" content="https://brokenthorn.github.io/banner.png" />
+  <meta property="og:site_name" content="Paul-Sebastian Manole" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:updated_time" content="2025-07-08" />
+  <meta name="twitter:site" content="@brokenthorn" />
+  <meta name="twitter:creator" content="@brokenthorn" />
+  <script defer src="https://brokenthorn.github.io/js/abridge.min.js?h=e0f9a881a665c86cce9c" integrity="sha384-QF67y7RnPkuDrJNQqn3/7nYxqxWkW/qHI7zN0WTES1aXbf+TotoByRBb835fUE6U"></script>
+  <noscript><link rel="stylesheet" href="https://brokenthorn.github.io/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><big><a href="https://brokenthorn.github.io" title="Paul-Sebastian Manole"><font color="#f90">P</font>aul-Sebastian Manole</a></big></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s90" href="https://brokenthorn.github.io/archive/"> Posts </a></li><li><a class="s90" href="https://brokenthorn.github.io/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs svgm search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+    <div class="desc">Functional Programming | Full-Stack Development | TypeScript | Rust | OCaml | Gleam | Effect-TS</div>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://brokenthorn.github.io/effect-for-typescript-ch2/">Effect-TS 2: The Effect</a></h1>
+
+      <span class="s85"> Paul-Sebastian Manole <span class="rpad"></span> 11 min read <span class="rpad"></span> July 08, 2025 <span class="rpad"></span> #<a href="https://brokenthorn.github.io/tags/the-effect-library-for-typescript/">The Effect library for TypeScript</a>  #<a href="https://brokenthorn.github.io/tags/effect/">Effect</a>  #<a href="https://brokenthorn.github.io/tags/typescript/">TypeScript</a> </span>
+
+    
+        <div class="block">
+      <div class="blockdiv">
+        <a class="b s150" href="https://brokenthorn.github.io/tags/the-effect-library-for-typescript/">The Effect library for TypeScript (Series)</a><br>
+            <a href="https://brokenthorn.github.io/effect-for-typescript-ch1/">Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale</a><br>
+            <a class="scur" href="https://brokenthorn.github.io/effect-for-typescript-ch2/">Effect-TS 2: The Effect</a><br> 
+          
+      </div>
+    </div>
+
+
+<p>In the previous chapter I introduced you to the <a rel="noopener" target="_blank" href="https://effect.website/">Effect</a>
+ecosystem—toolkit if you want—of libraries for TypeScript.</p>
+<p>In this chapter I will cover the <code>effect</code> library from Effect.</p>
+<h3 id="what-does-effect-provide"><a class="zola-anchor" href="#what-does-effect-provide" aria-label="Anchor link for: what-does-effect-provide">What does effect provide?</a></h3>
+<p>If you look at the <a rel="noopener" target="_blank" href="https://effect-ts.github.io/effect/docs/effect">API reference</a> for the <code>effect</code>
+library, you'll see that it has a lot of top level modules.</p>
+<p>That is because this library provides the <strong>core abstractions</strong> used by all other Effect libraries,
+but you won't be needing to use or know how to use more than a handful of these, maybe even just one
+or two, depending on your use case.</p>
+<p>Some of the things it provides are:</p>
+<ul>
+<li>The <code>Effect</code> data type.</li>
+<li>Other useful data types such as <code>Option</code> and <code>Either</code>.</li>
+<li>Utility functions for working with JavaScript types.</li>
+<li>Utility functions for working with Effect data types.</li>
+<li>A Clock abstraction (like a service you can inject).</li>
+<li>DateTime utils (replaces libs like date-fns).</li>
+<li>Cron utils.</li>
+<li>Configuration utils.</li>
+<li>and more.</li>
+</ul>
+<p>The <code>effect</code> library provides a lot of functionality, but you do not have to use all of it.</p>
+<p>I will be focusing on the <code>Effect</code> data type, as it is the data type that you use most often from
+Effect.</p>
+<h3 id="what-is-an-effect"><a class="zola-anchor" href="#what-is-an-effect" aria-label="Anchor link for: what-is-an-effect">What is an Effect?</a></h3>
+<p>Effect is short for <strong>side effect</strong>. If you don't know what side effects are, expand the next
+section. Otherwise, you can skip it.</p>
+<h4 id="what-are-side-effects"><a class="zola-anchor" href="#what-are-side-effects" aria-label="Anchor link for: what-are-side-effects">What are side effects?</a></h4>
+<details>
+    <summary>Expand to read more about side effects</summary>
+<p>A side effect is an <strong>observed behavior</strong> of some function, or code, that <em>happens outside of the
+function's local scope</em>, typically as a result of calling some other function that has side effects,
+or as a result of direct manipulation of global state—state that comes from outside the
+function (a variable, a database client, a file handle, etc.).</p>
+<p>By contrast, a pure function is a function that only takes some input and produces some output, with
+no other observed behavior that reaches outside the function or that depends on anything outside the
+function or even outside our program (like a network socket for example).</p>
+<p>Pure functions return the same output, given the same input, no matter how many times you run them,
+or at what instant in time.</p>
+<p>For example, a side effectful function could create, or accept, a file handle that it then uses in
+some way. Because the file handle is <strong>global state</strong> (state outside our function) and operating on
+it <em>has side effects</em>, it makes our function have side effects as well.</p>
+<p>If our function writes to the function, let's say it appends some text, that becomes a side effect
+of running our function. If we run the function twice, it would append the same data twice. Perhaps
+not what we wanted.</p>
+<p>A side effectful function is also any function that throws an exception, because it alters the
+normal flow of program execution. After all, <code>throw</code> is just a glorified <code>goto</code>. Throwing exceptions
+is very problematic in concurrent or async code, and this is where Effect's
+<a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Structured_concurrency">structured concurrency</a> shines. It makes it
+possible to handle <strong>all</strong> errors where they happen or for all errors to be propagated back to the
+control flow of the parent scope. With <code>throw</code> and <code>catch</code> you have no way of telling what error
+you're handling, or where each error is handled, if at all.</p>
+<p>Some programming languages have
+<a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Exception_handling_(programming)#Checked_exceptions">checked exceptions</a>,
+but we won't get into that. While they're an upgrade in safety compared to unchecked exceptions
+(like in JavaScript), they're still inferior to Effects.</p>
+</details>
+<h4 id="the-effect-data-type"><a class="zola-anchor" href="#the-effect-data-type" aria-label="Anchor link for: the-effect-data-type">The Effect data type</a></h4>
+<p>The <code>Effect</code> data type is an abstraction for expressing computations, both synchronous or
+asynchronous, their return values, the errors they produce, the requirements they have, and at the
+same time, make it easier to understand if they have side effects or not.</p>
+<p><code>Effect</code>s are lazy: they describes some computation, but they don't execute it when an Effect is
+created.</p>
+<p>An <code>Effect</code> describes a computation using 3 type parameters, 2 of them defaulting to <code>never</code>, if not
+specified: <code>Effect&lt;T, E=never, R=never&gt;</code>.</p>
+<ul>
+<li><code>T</code>: is the return <strong>T</strong>ype, also called <strong>the success channel</strong>.</li>
+<li><code>E</code>: is the <strong>E</strong>rror type, also called <strong>the error channel</strong>.</li>
+<li><code>R</code>: is the <strong>R</strong>equirements type, also called <strong>the requirements channel</strong>.</li>
+</ul>
+<p>The simplest <code>Effect</code> you can express is an effect that produces a value of type <code>T</code> and has no
+errors or requirements: an <code>Effect&lt;T&gt;</code>. This is similar to a <code>Promise&lt;T&gt;</code>—at least with
+regards to <code>T</code>—but Promises are not lazy, they start executing immediately after they're
+created, and can throw unforeseen errors.</p>
+<p>Because creating Effects has no side effects, they're just just values, they can be composed using
+functional combinators like <code>flatMap</code>, <code>zip</code>, or <code>gen</code>, before they are executed.</p>
+<p>They can also be transformed using <code>map</code>, <code>mapError</code> or <code>mapBoth</code>, which change only the success
+channel, only the error channel, or both.</p>
+<p>This composability is what makes Effects superior for building complex and robust applications,
+especially when dealing with concurrent code.</p>
+<h2 id="what-advantages-does-an-effect-provide"><a class="zola-anchor" href="#what-advantages-does-an-effect-provide" aria-label="Anchor link for: what-advantages-does-an-effect-provide">What advantages does an Effect provide?</a></h2>
+<p>Effects have many advantages that stem from their declarative nature and ability to track their
+observable behavior using the type system.</p>
+<p>I will focus on the type signature and this declarative nature to give you some examples of the
+advantages <code>Effect</code> brings.</p>
+<h3 id="no-more-exceptions-errors-as-values"><a class="zola-anchor" href="#no-more-exceptions-errors-as-values" aria-label="Anchor link for: no-more-exceptions-errors-as-values">No more exceptions (errors as values)</a></h3>
+<p>Consider this normal function:</p>
+<pre data-lang="typescript" class="language-typescript z-code"><code class="language-typescript" data-lang="typescript"><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">divide</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">a</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">number</span></span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">b</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">number</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-arrow z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">number</span> </span></span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-keyword z-control z-conditional z-ts">if</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">b</span> <span class="z-keyword z-operator z-comparison z-ts">===</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-block z-ts">    <span class="z-keyword z-control z-trycatch z-ts">throw</span> <span class="z-new z-expr z-ts"><span class="z-keyword z-operator z-new z-ts">new</span> <span class="z-entity z-name z-type z-ts">Error</span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>Cannot divide by zero<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-block z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-variable z-other z-readwrite z-ts">a</span> <span class="z-keyword z-operator z-arithmetic z-ts">/</span> <span class="z-variable z-other z-readwrite z-ts">b</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></code></pre>
+<p>If you just glance at this function's type you'd never guess it could completely crash and burn if
+you tried to divide by zero. The only way to know that is to actually read through the code.</p>
+<p>This isn't a huge deal when you're just starting out with a few functions. But imagine your project
+gets bigger, and you have tons of functions. It's super easy to forget that one of them might throw
+an error, and then you also forget to plan for how to handle it.</p>
+<p>If you're calling third party code you might also have no idea that you're calling code that might
+throw and break your own code.</p>
+<p>After your codebase grows and you get into a few unhandled exception cases, you lose trust in your
+codebase because you have no idea where the errors are. So your immediate solution is to play
+Pokemon..., you know, "catch 'em all", which leads to poor error handling and reporting. It also
+makes it very difficult to start adding error recovery.</p>
+<p>Now consider the alternative version, written with Effect:</p>
+<pre data-lang="typescript" class="language-typescript z-code"><code class="language-typescript" data-lang="typescript"><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span> <span class="z-variable z-other z-readwrite z-alias z-ts">Effect</span> <span class="z-punctuation z-definition z-block z-ts">}</span></span> <span class="z-keyword z-control z-from z-ts">from</span> <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>effect<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">divide</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">a</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">number</span></span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">b</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">number</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-arrow z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-module z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-type z-ts">Effect</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-support z-type z-primitive z-ts">number</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-entity z-name z-type z-ts">Error</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span> </span></span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-keyword z-control z-conditional z-ts">if</span> <span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">b</span> <span class="z-keyword z-operator z-comparison z-ts">===</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">fail</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-new z-expr z-ts"><span class="z-keyword z-operator z-new z-ts">new</span> <span class="z-entity z-name z-type z-ts">Error</span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>Cannot divide by zero<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">succeed</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">a</span> <span class="z-keyword z-operator z-arithmetic z-ts">/</span> <span class="z-variable z-other z-readwrite z-ts">b</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></code></pre>
+<p>The return type is optional, because it can be inferred, but it shows you that this function now can
+either succeed with a number or fail with an Error.</p>
+<p>So, with Effect, you can use the type system to more precisely express what your code does.</p>
+<h3 id="dependencies-are-explicit"><a class="zola-anchor" href="#dependencies-are-explicit" aria-label="Anchor link for: dependencies-are-explicit">Dependencies are explicit</a></h3>
+<p>Remember the third type parameter, <code>R</code>? It allows you express any requirements that an Effect has,
+which have to be provided before the Effect can be executed. Because this is tracked in the type
+system, it's a type error if you try to execute an Effect that hasn't had its requirements removed
+from the type signature by providing them before the Effect is run or before the program is started.</p>
+<p>The Effect's requirements are a form of Dependency Injection (DI), but it's more explicit, more
+flexible, is inferrable (you don't have to declare the requirements, they're inferred from use), and
+it doesn't pollute your function's arguments list.</p>
+<p>Let's consider the classical form of DI:</p>
+<pre data-lang="typescript" class="language-typescript z-code"><code class="language-typescript" data-lang="typescript"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Define an abstraction for data fetching:</span>
+</span><span class="z-source z-ts"><span class="z-meta z-interface z-ts"><span class="z-storage z-type z-interface z-ts">interface</span> <span class="z-entity z-name z-type z-interface z-ts">UserRepository</span> <span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-interface z-ts"><span class="z-meta z-method z-declaration z-ts">  <span class="z-meta z-definition z-method z-ts"><span class="z-entity z-name z-function z-ts">getUserName</span></span><span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">userId</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-ts">Promise</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-interface z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Concrete implementation using HTTP:</span>
+</span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-storage z-type z-class z-ts">class</span> <span class="z-entity z-name z-type z-class z-ts">HttpUserRepository</span> <span class="z-storage z-modifier z-ts">implements</span> <span class="z-entity z-other z-inherited-class z-ts">UserRepository</span> <span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts">  <span class="z-meta z-method z-declaration z-ts"><span class="z-storage z-modifier z-async z-ts">async</span> <span class="z-meta z-definition z-method z-ts"><span class="z-entity z-name z-function z-ts">getUserName</span></span><span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">userId</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-ts">Promise</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span> </span><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-method z-declaration z-ts"><span class="z-meta z-block z-ts">    <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-class z-promise z-ts">Promise</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-promise z-ts">resolve</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-template z-ts"><span class="z-punctuation z-definition z-string z-template z-begin z-ts">`</span>User_<span class="z-meta z-template z-expression z-ts"><span class="z-punctuation z-definition z-template-expression z-begin z-ts">${</span></span><span class="z-meta z-template z-expression z-ts"><span class="z-meta z-embedded z-line z-ts"><span class="z-variable z-other z-readwrite z-ts">userId</span></span><span class="z-punctuation z-definition z-template-expression z-end z-ts">}</span></span><span class="z-punctuation z-definition z-string z-template z-end z-ts">`</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-method z-declaration z-ts"><span class="z-meta z-block z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span></span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Business logic that depends on the abstraction:</span>
+</span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-storage z-type z-class z-ts">class</span> <span class="z-entity z-name z-type z-class z-ts">UserService</span> <span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-method z-declaration z-ts">  <span class="z-storage z-type z-ts">constructor</span><span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-storage z-modifier z-ts">private</span> <span class="z-variable z-parameter z-ts">userRepo</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-ts">UserRepository</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span><span class="z-punctuation z-definition z-block z-ts">}</span></span></span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts">
+</span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts">  <span class="z-meta z-method z-declaration z-ts"><span class="z-storage z-modifier z-async z-ts">async</span> <span class="z-meta z-definition z-method z-ts"><span class="z-entity z-name z-function z-ts">greetUser</span></span><span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">userId</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-ts">Promise</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span> </span><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-method z-declaration z-ts"><span class="z-meta z-block z-ts">    <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-string z-template z-ts"><span class="z-punctuation z-definition z-string z-template z-begin z-ts">`</span>Hello, <span class="z-meta z-template z-expression z-ts"><span class="z-punctuation z-definition z-template-expression z-begin z-ts">${</span></span><span class="z-meta z-template z-expression z-ts"><span class="z-meta z-embedded z-line z-ts"><span class="z-keyword z-control z-flow z-ts">await</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-language z-this z-ts">this</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-variable z-other z-object z-property z-ts">userRepo</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">getUserName</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">userId</span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-definition z-template-expression z-end z-ts">}</span></span>!<span class="z-punctuation z-definition z-string z-template z-end z-ts">`</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-method z-declaration z-ts"><span class="z-meta z-block z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span></span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Usage (approximately):</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">repository</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-new z-expr z-ts"><span class="z-keyword z-operator z-new z-ts">new</span> <span class="z-entity z-name z-type z-ts">HttpUserRepository</span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">service</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-new z-expr z-ts"><span class="z-keyword z-operator z-new z-ts">new</span> <span class="z-entity z-name z-type z-ts">UserService</span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">repository</span><span class="z-meta z-brace z-round z-ts">)</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">service</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">greetUser</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>42<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-promise z-ts">then</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">log</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Hello, User_42!</span>
+</span></code></pre>
+<p>The usage demo is greatly simplified, as you would normally have to configure a DI container and set
+up which <code>UserRepository</code> is created, and have to set up some wiring so that the correct instance is
+injected for you.</p>
+<p>The alternative Effectful version looks like this:</p>
+<pre data-lang="typescript" class="language-typescript z-code"><code class="language-typescript" data-lang="typescript"><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span> <span class="z-variable z-other z-readwrite z-alias z-ts">Context</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-alias z-ts">Effect</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-variable z-other z-readwrite z-alias z-ts">Layer</span> <span class="z-punctuation z-definition z-block z-ts">}</span></span> <span class="z-keyword z-control z-from z-ts">from</span> <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>effect<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Define the service interface as a Context Tag:</span>
+</span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-keyword z-control z-export z-ts">export</span> <span class="z-storage z-type z-class z-ts">class</span> <span class="z-entity z-name z-type z-class z-ts">UserRepository</span> <span class="z-storage z-modifier z-ts">extends</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Context</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">Tag</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>UserRepository<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-type z-parameters z-ts">  <span class="z-entity z-name z-type z-ts">UserRepository</span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-type z-parameters z-ts">  <span class="z-meta z-object z-type z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span><span class="z-meta z-method z-declaration z-ts"> <span class="z-meta z-definition z-method z-ts"><span class="z-entity z-name z-function z-ts">getUserName</span></span><span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">userId</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-module z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-type z-ts">Effect</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span> </span></span><span class="z-punctuation z-definition z-block z-ts">}</span></span> <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> our interface</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-class z-ts"><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-punctuation z-definition z-block z-ts">{</span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Provide the implementation as a Layer (it describes how a Tag is constructed):</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-keyword z-control z-export z-ts">export</span> <span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">UserRepositoryLive</span></span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-module z-ts">Layer</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-type z-ts">Layer</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-entity z-name z-type z-ts">UserRepository</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span> </span></span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Layer</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">succeed</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">UserRepository</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-objectliteral z-ts">  <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-entity z-name z-function z-ts">getUserName</span></span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">userId</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> </span><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">succeed</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-template z-ts"><span class="z-punctuation z-definition z-string z-template z-begin z-ts">`</span>User_<span class="z-meta z-template z-expression z-ts"><span class="z-punctuation z-definition z-template-expression z-begin z-ts">${</span></span><span class="z-meta z-template z-expression z-ts"><span class="z-meta z-embedded z-line z-ts"><span class="z-variable z-other z-readwrite z-ts">userId</span></span><span class="z-punctuation z-definition z-template-expression z-end z-ts">}</span></span><span class="z-punctuation z-definition z-string z-template z-end z-ts">`</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Business logic as a pure Effect (the return type can be inferred and is optional):</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">greetUser</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">userId</span><span class="z-meta z-type z-annotation z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-support z-type z-primitive z-ts">string</span></span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span><span class="z-meta z-return z-type z-arrow z-ts"><span class="z-keyword z-operator z-type z-annotation z-ts">:</span> <span class="z-entity z-name z-type z-module z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-type z-ts">Effect</span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-begin z-ts">&lt;</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-support z-type z-primitive z-ts">string</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-support z-type z-primitive z-ts">never</span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-entity z-name z-type z-ts">UserRepository</span></span><span class="z-meta z-type z-parameters z-ts"><span class="z-punctuation z-definition z-typeparameters z-end z-ts">&gt;</span></span> </span></span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts">  </span><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">gen</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function z-expression z-ts"><span class="z-storage z-type z-function z-ts">function</span><span class="z-keyword z-generator z-asterisk z-ts">*</span> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts">    <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">repository</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-keyword z-control z-flow z-ts">yield</span><span class="z-keyword z-generator z-asterisk z-ts">*</span> <span class="z-variable z-other z-readwrite z-ts">UserRepository</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span> <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> auto adds UserRepository to the Requirements type param</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts">    <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-string z-template z-ts"><span class="z-punctuation z-definition z-string z-template z-begin z-ts">`</span>Hello, <span class="z-meta z-template z-expression z-ts"><span class="z-punctuation z-definition z-template-expression z-begin z-ts">${</span></span><span class="z-meta z-template z-expression z-ts"><span class="z-meta z-embedded z-line z-ts"><span class="z-keyword z-control z-flow z-ts">yield</span><span class="z-keyword z-generator z-asterisk z-ts">*</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">repository</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">getUserName</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">userId</span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-definition z-template-expression z-end z-ts">}</span></span>!<span class="z-punctuation z-definition z-string z-template z-end z-ts">`</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Usage (this is it, nothing more required):</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">runPromise</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function-call z-ts"><span class="z-entity z-name z-function z-ts">greetUser</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>42<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">pipe</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">Effect</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">provide</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">UserRepositoryLive</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-promise z-ts">then</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">log</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> Hello, User_42!</span>
+</span></code></pre>
+<details>
+  <summary>Why is Effect using generators (`function*`)?</summary>
+<p>We'll ignore the use of a generator function (<code>function*</code>) for now, but if you want to understand
+why Effect uses them, you can
+<a rel="noopener" target="_blank" href="https://effect.website/docs/getting-started/using-generators/">read this documentation</a>.</p>
+<p>If you think they are slow, <a rel="noopener" target="_blank" href="https://effect.website/docs/additional-resources/myths/">they are not</a>.
+That would be like saying async/await it slow.</p>
+</details>
+<p>You're seeing a few new types:</p>
+<ul>
+<li><code>Context.Tag</code>, which is a tag for uniquely identifying something from a <code>Context</code>, which is like a
+DI Container (but you can any number of them in one app). It identifies not just what a generic
+thing is called but also its interface or type.</li>
+<li><code>Layer</code>, which is an Effect for constructing <code>Context.Tag</code>, so you could call it a factory.</li>
+</ul>
+<p>While the usage looks a lot like the one for classical DI above, in this case this is all you need
+to do, there's no other setup or wiring required, like with classical DI. This is more flexible, not
+just more explicit.</p>
+<p>You could lazily decide what concrete implementation to provide by creating a dynamic Layer with
+<code>Layer.effect(tag, eff)</code>. The building and decision happens in the <code>eff</code> Effect. For example, you
+could allow the Layer construction to be configured from the process environment (Effect offers the
+<code>Config</code> module for this).</p>
+<p>Because Layers are just Effects (their type signatures are identical), they can also return errors
+if a dependency could not be constructed. They could also declare requirements/dependencies of
+themselves.</p>
+<p><code>Layer.effect</code> is also very useful when you have a service that is slow to build or requires to be
+built asynchronously (like a database connection pool).</p>
+<p>Here is a quick side by side comparison between classical DI and Effect:</p>
+<table><thead><tr><th>Aspect</th><th>Dependency Injection</th><th>Effect</th></tr></thead><tbody>
+<tr><td>Goal</td><td>Manage dependencies and side effects via interfaces and complicated wiring with DI Containers</td><td>Track and control side effects explicitly in types</td></tr>
+<tr><td>Side effects</td><td>Hidden behind abstractions (interface, exceptions)</td><td>Explicitly declared and handled (errors, requirements)</td></tr>
+<tr><td>Coupling</td><td>Loose coupling via interfaces</td><td>Loose coupling via effect handlers/combinators (e.g., error handlers, functional combinators)</td></tr>
+<tr><td>Error handling</td><td>Usually separate, often exceptions</td><td>Often integrated as part of effects or effect pipeline</td></tr>
+<tr><td>Runtime vs Compile</td><td>Mostly runtime wiring</td><td>Mostly compile-time effect tracking (better static analysis)</td></tr>
+<tr><td>Complexity</td><td>Simpler to adopt, but can get complex in large apps</td><td>More complex initially, but safer and more explicit</td></tr>
+<tr><td>Use cases</td><td>General OOP and modular design</td><td>Functional programming, pure functional cores</td></tr>
+</tbody></table>
+<h2 id="why-is-effect-better"><a class="zola-anchor" href="#why-is-effect-better" aria-label="Anchor link for: why-is-effect-better">Why is Effect better?</a></h2>
+<p>The Effect-based approach offers several advantages over traditional DI:</p>
+<ol>
+<li><strong>Explicitness:</strong> Side-effects and dependencies are explicitly declared in the type system,
+making them easier to reason about and track.</li>
+<li><strong>Composability:</strong> Effects can be combined and transformed using functional combinators, enabling
+modular and reusable code.</li>
+<li><strong>Unified Abstraction:</strong> Error handling, async operations, state, and other concerns are unified
+under the <code>Effect</code> abstraction, reducing the need for separate mechanisms.</li>
+<li><strong>Safety:</strong> The type system enforces handling of effects or propagates them explicitly to the
+layers above, reducing the risk of runtime errors or unhandled side effects (exceptions).</li>
+<li><strong>Testability:</strong> Effects are pure descriptions until executed, making them easy to test by
+substituting requirements with mocks.</li>
+</ol>
+<p>While the classical DI approach works well for many use cases, it hides side effects behind
+abstractions. For example, can I see from the function signature if <code>getUserName()</code> calls the
+network or opens a database connection? If I don't see a specific interface in its parameters and
+know how the DI container is set up, then no. Likewise, do I know whether it can throw an exception
+and break normal program flow without reading its code? No.</p>
+<p>Classical DI relies on runtime wiring, which can lead to subtle bugs and harder debugging.</p>
+<p>Effect, by contrast, leverages the type system and makes everything more explicit and safe. You have
+more control over the executing code and you get stronger guarantees about your program's behavior.</p>
+<h2 id="conclusion"><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion">Conclusion</a></h2>
+<p>Managing challenges like error handling, debugging, tracing, async/promises, retries, streaming,
+concurrency, caching, resource management, and a lot more are made manageable with Effect.</p>
+<p>We'll dive into more depth in some of these topics in the next articles, but suffice to say, you
+don’t have to re-invent the solutions to these problems, or install tons of dependencies. Effect,
+under one umbrella, solves many of the problems that you would usually install many different
+dependencies with different APIs to solve.</p>
+<p>Effect is heavily inspired by great work done in other languages, like Scala and Haskell. However,
+it’s important to understand that Effect’s goal is to be a practical toolkit, and it goes to great
+lengths to solve real, everyday problems that developers face when building applications and
+libraries in TypeScript.</p>
+<h2 id="next-steps"><a class="zola-anchor" href="#next-steps" aria-label="Anchor link for: next-steps">Next Steps</a></h2>
+<p>In the next chapter I will focus more on practical examples to show you why Effects are better than
+traditional approaches. I will introduce errors and error handling with Effect, comparing a
+<code>Promise&lt;T&gt;</code>, which doesn't tell you if it can throw an error or not, with <code>Effect&lt;T, SomeError&gt;</code>.</p>
+
+      <nav>
+        <div>
+        </div>
+        <div>
+          <a href="https://brokenthorn.github.io/effect-for-typescript-ch1/"> Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale &#8250;</a>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+      <div class="blockdiv">
+        <a class="b s150" href="https://brokenthorn.github.io/tags/the-effect-library-for-typescript/">Series</a><br>
+            
+      <a href="https://brokenthorn.github.io/effect-for-typescript-ch1/">Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale</a><br>
+            
+      <a class="scur" href="https://brokenthorn.github.io/effect-for-typescript-ch2/">Effect-TS 2: The Effect</a><br>
+    
+      </div>
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#what-does-effect-provide">What does effect provide?</a>
+        </div>
+        <div>
+          <a href="#what-is-an-effect">What is an Effect?</a>
+        </div>
+        <div class="hpad">
+          <a href="#what-are-side-effects"><small>- What are side effects?</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#the-effect-data-type"><small>- The Effect data type</small></a>
+        </div>
+        <div>
+          <a href="#what-advantages-does-an-effect-provide">What advantages does an Effect provide?</a>
+        </div>
+        <div class="hpad">
+          <a href="#no-more-exceptions-errors-as-values"><small>- No more exceptions (errors as values)</small></a>
+        </div>
+        <div class="hpad">
+          <a href="#dependencies-are-explicit"><small>- Dependencies are explicit</small></a>
+        </div>
+        <div>
+          <a href="#why-is-effect-better">Why is Effect better?</a>
+        </div>
+        <div>
+          <a href="#conclusion">Conclusion</a>
+        </div>
+        <div>
+          <a href="#next-steps">Next Steps</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="c">
+      <nav class="tpad"><div><a type="application/atom+xml" href="https://brokenthorn.github.io/atom.xml" target="_blank" title="Paul-Sebastian Manole Atom Feed"><i type="Button" class="svg rss" title="Paul-Sebastian Manole Atom Feed"></i></a><a href="https://twitter.com/brokenthorn/" target="_blank" title="Twitter"><i type="Button" class="svg twitter" title="Twitter"></i></a><a href="https://www.linkedin.com/in/paulsebastianmanole/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/brokenthorn/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://www.youtube.com/c&#x2F;PaulSebastianManole" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a></div></nav>
+      <nav class="vpad">
+        <a class="rpad s90" href="https://brokenthorn.github.io/about/"> About </a>
+        <a class="rpad s90" href="https://brokenthorn.github.io/contact/"> Contact </a>
+        <a class="rpad s90" href="https://brokenthorn.github.io/privacy/"> Privacy </a>
+        <a class="rpad s90" href="https://brokenthorn.github.io/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s95"> &copy; <span id="year">2025</span> Paul-Sebastian Manole</p>
+      <p class="s70">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> &#38; <a href="https://github.com/Jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>

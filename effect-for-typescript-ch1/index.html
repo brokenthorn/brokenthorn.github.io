@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://brokenthorn.github.io/js/theme.min.js" integrity="sha384-pb++s6uBRKaQv+iAXpgA/H3IlpLZdO14tTwuCI7uXmz4aaZdByoCcM+6BhynMq/1"></script>
+  <link rel="stylesheet" href="https://brokenthorn.github.io/abridge.css?h=3d2e9c5683be721390df" />
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="base" content="https://brokenthorn.github.io" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#333333" />
+  <meta name="msapplication-TileColor" content="#333333" />
+  <link rel="manifest" href="https://brokenthorn.github.io/manifest.min.json" />
+  <link rel="mask-icon" href="https://brokenthorn.github.io/safari-pinned-tab.svg" color="#ff9900" />
+  <link rel="icon" type="image/svg+xml" href="https://brokenthorn.github.io/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://brokenthorn.github.io/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://brokenthorn.github.io/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://brokenthorn.github.io/favicon-16x16.png" />
+  <link rel="alternate" type="application/atom+xml" title="Paul-Sebastian Manole Atom Feed" href="https://brokenthorn.github.io/atom.xml" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V63NJE34V"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-0V63NJE34V");</script>
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <title>Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale | Paul-Sebastian Manole</title>
+  <meta name="author" content="Paul-Sebastian Manole" />
+  <meta name="copyright" content="Paul-Sebastian Manole" />
+  <meta name="description" content="An introduction to Effect, a library for writing production-grade TypeScript, at scale." />
+  <link rel="canonical" href="https://brokenthorn.github.io/effect-for-typescript-ch1/" />
+  <meta name="keywords" content="Effect, TypeScript, functional programming, full-stack, software development, TypeScript, Rust, Rustlang, OCaml, Gleam, Effect-TS" />
+  <meta property="og:url" content="https://brokenthorn.github.io/effect-for-typescript-ch1/" />
+  <meta name="twitter:url" content="https://brokenthorn.github.io/effect-for-typescript-ch1/" />
+  <meta property="og:description" content="An introduction to Effect, a library for writing production-grade TypeScript, at scale." />
+  <meta name="twitter:description" content="An introduction to Effect, a library for writing production-grade TypeScript, at scale." />
+  <meta property="og:title" content="Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale | Paul-Sebastian Manole" />
+  <meta name="twitter:title" content="Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale | Paul-Sebastian Manole" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://brokenthorn.github.io/banner.png" />
+  <meta property="og:image" content="https://brokenthorn.github.io/banner.png" />
+  <meta property="og:site_name" content="Paul-Sebastian Manole" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta property="og:updated_time" content="2025-07-06" />
+  <meta name="twitter:site" content="@brokenthorn" />
+  <meta name="twitter:creator" content="@brokenthorn" />
+  <script defer src="https://brokenthorn.github.io/js/abridge.min.js?h=e0f9a881a665c86cce9c" integrity="sha384-QF67y7RnPkuDrJNQqn3/7nYxqxWkW/qHI7zN0WTES1aXbf+TotoByRBb835fUE6U"></script>
+  <noscript><link rel="stylesheet" href="https://brokenthorn.github.io/nojs.css" /></noscript>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><big><a href="https://brokenthorn.github.io" title="Paul-Sebastian Manole"><font color="#f90">P</font>aul-Sebastian Manole</a></big></div>
+      <div>
+
+        <div>
+          <ul><li><a class="s90" href="https://brokenthorn.github.io/archive/"> Posts </a></li><li><a class="s90" href="https://brokenthorn.github.io/tags/"> Tags </a></li><li><i type="reset" id="mode" class="js svgs adjust"></i></ul>
+        </div>
+
+        <div>
+          <div>
+            <form autocomplete=off class="js" name="goSearch" id="searchbox">
+              <div class="searchd">
+                <input id="searchinput" type="text" placeholder="Search" title="Search" />
+                <button type="submit" title="Search" class="svgs svgm search"></button>
+              </div>
+              <div class="results"><div id="suggestions"></div></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+    <div class="desc">Functional Programming | Full-Stack Development | TypeScript | Rust | OCaml | Gleam | Effect-TS</div>
+  </header>
+  <main>
+    <article>
+      <h1><a href="https://brokenthorn.github.io/effect-for-typescript-ch1/">Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale</a></h1>
+
+      <span class="s85"> Paul-Sebastian Manole <span class="rpad"></span> 5 min read <span class="rpad"></span> July 06, 2025 <span class="rpad"></span> #<a href="https://brokenthorn.github.io/tags/the-effect-library-for-typescript/">The Effect library for TypeScript</a>  #<a href="https://brokenthorn.github.io/tags/effect/">Effect</a>  #<a href="https://brokenthorn.github.io/tags/typescript/">TypeScript</a> </span>
+
+    
+        <div class="block">
+      <div class="blockdiv">
+        <a class="b s150" href="https://brokenthorn.github.io/tags/the-effect-library-for-typescript/">The Effect library for TypeScript (Series)</a><br>
+            <a class="scur" href="https://brokenthorn.github.io/effect-for-typescript-ch1/">Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale</a><br> 
+          
+            <a href="https://brokenthorn.github.io/effect-for-typescript-ch2/">Effect-TS 2: The Effect</a><br>
+      </div>
+    </div>
+
+
+<p>This is the first post in a series on Effect, a library that makes it easier to write
+production-grade TypeScript at scale, where I plan to show you why I would prefer to write
+TypeScript with Effect all the time, if that were possible.</p>
+<p>By taking a pragmatic approach to Functional Programming, Effect makes it easier to deal with some
+of the things — and I would argue, most of the things — one has to deal with when
+writing TypeScript at scale: <mark>concurrency</mark>, <mark>error handling</mark>, <mark>side
+effects</mark>, <mark>retry policies</mark>, <mark>back pressure</mark>, <mark>logging</mark>,
+<mark>observability (tracing)</mark>, <mark>schema validations</mark>, and more.</p>
+<p>Hopefully by the end of these articles I would have convinced you to at least try it out.</p>
+<h2 id="what-is-effect"><a class="zola-anchor" href="#what-is-effect" aria-label="Anchor link for: what-is-effect">What is Effect?</a></h2>
+<p>Effect is a modular library with tons of goodies inside that I will try to get into in the next
+posts.</p>
+<p>But, the star of the library is the <code>Effect</code> data type, which is an abstraction for managing side
+effects, and more.</p>
+<p>Effect has built what's called an <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Effect_system">Effect System</a>, a
+formal system for describing side effects and computations, making them easier to check at
+compile-time, so you get more compile-time guarantees from TypeScript about your code than you would
+get otherwise, especially when it comes to errors.</p>
+<p>Effect also supports <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Structured_concurrency">structured concurrency</a>,
+a programming paradigm that improves clarity, quality and reliability of asynchronous programs, by
+using a structured approach to concurrency, i.e. it allows control flow to remain readily evident by
+the structure of the source code, despite presence of concurrency.</p>
+<p>The Effect System together with the structured approach to concurrency, makes it easier to reason
+about asynchronous code and side effects.</p>
+<ul>
+<li>Effect's website: <a rel="noopener" target="_blank" href="https://effect.website/">effect.website</a></li>
+<li>GitHub repository: <a rel="noopener" target="_blank" href="https://github.com/Effect-TS">Effect-TS</a></li>
+</ul>
+<h2 id="do-i-need-to-know-functional-programming"><a class="zola-anchor" href="#do-i-need-to-know-functional-programming" aria-label="Anchor link for: do-i-need-to-know-functional-programming">Do I need to know Functional Programming?</a></h2>
+<p>In order to learn how to use Effect correctly you should be somewhat proficient with TypeScript. You
+should be comfortable with: types, functions, generator functions, function overloads, and generics.</p>
+<p>It's not necessary to know Functional Programming to understand Effect, but if you do, it will help
+you pick it up faster.</p>
+<p>Effect makes use of some Functional Programming concepts like higher-order functions, building
+functional pipelines, immutability, lazy execution, data-first and data-last functions, none of
+which are hard to understand from a couple of examples.</p>
+<p>Effect focuses on actual usage in real-world scenarios so it eschews a lot of abstract ideas often
+touted by more hard core or pure functional programming languages/libraries. It makes an effort to
+let you write the simplest code you can in the way you find easiest to write or understand, be it
+declarative or imperative.</p>
+<h2 id="documentation"><a class="zola-anchor" href="#documentation" aria-label="Anchor link for: documentation">Documentation</a></h2>
+<p>Official documentation: <a rel="noopener" target="_blank" href="https://effect.website/docs/">https://effect.website/docs/</a>.<br />
+I strongly recommend you read the "Getting started" section, it's very good.</p>
+<p>A full API reference is also available
+<a rel="noopener" target="_blank" href="https://effect.website/docs/additional-resources/api-reference/">here</a>.</p>
+<h2 id="live-playground"><a class="zola-anchor" href="#live-playground" aria-label="Anchor link for: live-playground">Live Playground</a></h2>
+<p>You can play with Effect in the Live Playground:
+<a rel="noopener" target="_blank" href="https://effect.website/play/">https://effect.website/play/</a>.</p>
+<p>It features hot-reload, a terminal, and a local trace viewer (Effect DevTools).</p>
+<p>It's great for experimentation and creating minimal reproducible examples (MREs) before seeking
+help. Just use the built-in share functionality.</p>
+<h2 id="discord"><a class="zola-anchor" href="#discord" aria-label="Anchor link for: discord">Discord</a></h2>
+<p>There is an Effect community on Discord, which you can join at
+<a rel="noopener" target="_blank" href="https://discord.gg/effect-ts">https://discord.gg/effect-ts</a>.</p>
+<h2 id="who-s-using-effect"><a class="zola-anchor" href="#who-s-using-effect" aria-label="Anchor link for: who-s-using-effect">Who's using Effect?</a></h2>
+<p>Companies like Vercel and Zendesk already use Effect in production, and the future looks promising
+in terms of adoption.</p>
+<p>For more testimonials and adoption stories, check out the
+<a rel="noopener" target="_blank" href="https://effect.website/podcast/">Effect Podcast</a> and the
+<a rel="noopener" target="_blank" href="https://www.youtube.com/@effect-ts">Effect YouTube channel</a>. Also the job board on Discord might be
+helpful.</p>
+<p>Effect was also featured in
+<a rel="noopener" target="_blank" href="https://www.thoughtworks.com/content/dam/thoughtworks/documents/radar/2025/04/tr_technology_radar_vol_32_en.pdf">Thoughtworks' April 2025 Techonology Radar</a>,
+saying:</p>
+<blockquote>
+<p>Effect is a powerful TypeScript library for building complex synchronous and asynchronous
+programs. Web application development often requires boilerplate code for tasks such as
+asynchrony, concurrency, state management and error handling. Effect-TS streamlines these
+processes using a functional programming approach. Leveraging TypeScript’s type system, Effect
+helps catch hard-to-detect issues at compile time. Our team previously used fp-ts for functional
+programming but found that Effect-TS provides abstractions that align more closely with daily
+tasks. It also makes code easier to combine and test. While traditional approaches like
+Promise/try-catch or async/await can handle such scenarios, after using Effect, our team found no
+reason to go back.</p>
+</blockquote>
+<h2 id="is-that-all"><a class="zola-anchor" href="#is-that-all" aria-label="Anchor link for: is-that-all">Is that all?</a></h2>
+<p>Nope, but I decided to keep the first post as a short high-level introduction.</p>
+<p>In the next post I will cover the <code>Effect</code> data type that I only briefly mentioned
+<a href="https://brokenthorn.github.io/effect-for-typescript-ch1/#what-is-effect">above</a>.</p>
+<p>I'll explain what it is, what it does, and how it compares to something like <code>Promise&lt;T&gt;</code>.</p>
+
+      <nav>
+        <div>
+          <a href="https://brokenthorn.github.io/effect-for-typescript-ch2/">&#8249; Effect-TS 2: The Effect</a>
+        </div>
+        <div>
+        </div>
+      </nav>
+    </article>
+
+    <div class="sblock">
+      <div class="blockdiv">
+        <a class="b s150" href="https://brokenthorn.github.io/tags/the-effect-library-for-typescript/">Series</a><br>
+            
+      <a class="scur" href="https://brokenthorn.github.io/effect-for-typescript-ch1/">Effect-TS 1: A pragmatic toolkit for writing TypeScript at scale</a><br>
+    
+            
+      <a href="https://brokenthorn.github.io/effect-for-typescript-ch2/">Effect-TS 2: The Effect</a><br>
+      </div>
+      <div class="blockdiv sticky">
+        <a class="b s150" href="#">Index</a>
+        <div>
+          <a href="#what-is-effect">What is Effect?</a>
+        </div>
+        <div>
+          <a href="#do-i-need-to-know-functional-programming">Do I need to know Functional Programming?</a>
+        </div>
+        <div>
+          <a href="#documentation">Documentation</a>
+        </div>
+        <div>
+          <a href="#live-playground">Live Playground</a>
+        </div>
+        <div>
+          <a href="#discord">Discord</a>
+        </div>
+        <div>
+          <a href="#who-s-using-effect">Who&#x27;s using Effect?</a>
+        </div>
+        <div>
+          <a href="#is-that-all">Is that all?</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="c">
+      <nav class="tpad"><div><a type="application/atom+xml" href="https://brokenthorn.github.io/atom.xml" target="_blank" title="Paul-Sebastian Manole Atom Feed"><i type="Button" class="svg rss" title="Paul-Sebastian Manole Atom Feed"></i></a><a href="https://twitter.com/brokenthorn/" target="_blank" title="Twitter"><i type="Button" class="svg twitter" title="Twitter"></i></a><a href="https://www.linkedin.com/in/paulsebastianmanole/" target="_blank" title="LinkedIn"><i type="Button" class="svg linkedin" title="LinkedIn"></i></a><a href="https://github.com/brokenthorn/" target="_blank" title="Github"><i type="Button" class="svg github" title="Github"></i></a><a href="https://www.youtube.com/c&#x2F;PaulSebastianManole" target="_blank" title="YouTube"><i type="Button" class="svg youtube" title="YouTube"></i></a></div></nav>
+      <nav class="vpad">
+        <a class="rpad s90" href="https://brokenthorn.github.io/about/"> About </a>
+        <a class="rpad s90" href="https://brokenthorn.github.io/contact/"> Contact </a>
+        <a class="rpad s90" href="https://brokenthorn.github.io/privacy/"> Privacy </a>
+        <a class="rpad s90" href="https://brokenthorn.github.io/sitemap.xml" target="_blank"> Sitemap </a>
+      </nav>
+      <p class="s95"> &copy; <span id="year">2025</span> Paul-Sebastian Manole</p>
+      <p class="s70">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> &#38; <a href="https://github.com/Jieiku/abridge/" target="_blank">Abridge</a></p>
+    </div>
+  </footer><span class="topout">
+<span class="topleft"> </span><a href="#" class="top" title="Back to Top"><i class="svgs svgh angu"></i></a>
+</span>
+</body>
+</html>
